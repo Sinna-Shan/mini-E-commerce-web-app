@@ -13,14 +13,13 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  images:{
+  images: {
     type: Array,
     required: true,
   },
-  description:{
+  description: {
     type: String,
-  }
+  },
 });
-
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;
