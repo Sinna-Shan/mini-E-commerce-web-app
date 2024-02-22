@@ -47,11 +47,11 @@ exports.createProduct = async function (req, res) {
 
 exports.updateProduct = async function (req, res) {
   try {
-    const products = await Product.findByIdAndUpdate(req.params.id,req.body,{
+    const products = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
-    
+
     res.status(200).json({
       status: 'success',
       data: products,
@@ -66,6 +66,12 @@ exports.updateProduct = async function (req, res) {
 
 exports.deleteProduct = async function (req, res) {
   try {
+    await Product.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      status: 'success',
+      data: null,
+    });
   } catch (err) {
     res.status(400).json({
       status: 'failed',
