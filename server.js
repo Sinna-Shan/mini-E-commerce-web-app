@@ -4,7 +4,6 @@ dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 
 const URL = process.env.DB_URL.replace('<PASSWORD>', process.env.DB_PASSWORD);
-console.log(URL);
 mongoose
   .connect(URL, {
     useCreateIndex: true,
