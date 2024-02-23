@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  isFavorite:{
+    type: Boolean,
+    default: false,
+  }
 });
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;

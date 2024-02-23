@@ -1,6 +1,5 @@
 const Product = require('./../models/productModel');
 
-
 exports.getAllProducts = async function (req, res) {
   try {
     const products = await Product.find();
@@ -33,7 +32,9 @@ exports.getProductByID = async function (req, res) {
 
 exports.createProduct = async function (req, res) {
   try {
-    const products = await Product.create(req.body);
+    const imgUrls = req.files.map((file) => file.filename);
+    const data = { ...req.body, images: imgUrls };
+    const products = await Product.create(data);
     res.status(200).json({
       status: 'success',
       data: products,
@@ -48,7 +49,9 @@ exports.createProduct = async function (req, res) {
 
 exports.updateProduct = async function (req, res) {
   try {
-    const products = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    const imgUrls = req.files.map((file) => file.filename);
+    const data = { ...req.body, images: imgUrls };
+    const products = await Product.findByIdAndUpdate(req.params.id,data, {
       new: true,
       runValidators: true,
     });
