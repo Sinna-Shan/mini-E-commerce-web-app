@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// schema for mongoose
 const productSchema = new mongoose.Schema({
   SKU: {
     type: String,
@@ -25,5 +26,7 @@ const productSchema = new mongoose.Schema({
     default: false,
   }
 });
+
+// create model from schema
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;

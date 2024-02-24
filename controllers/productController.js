@@ -1,5 +1,6 @@
 const Product = require('./../models/productModel');
 
+// get all products
 exports.getAllProducts = async function (req, res) {
   try {
     const products = await Product.find();
@@ -15,6 +16,7 @@ exports.getAllProducts = async function (req, res) {
   }
 };
 
+// find a product by its ID
 exports.getProductByID = async function (req, res) {
   try {
     const products = await Product.findById(req.params.id);
@@ -30,6 +32,7 @@ exports.getProductByID = async function (req, res) {
   }
 };
 
+// create a new product
 exports.createProduct = async function (req, res) {
   try {
     const imgUrls = req.files.map((file) => file.filename);
@@ -47,6 +50,7 @@ exports.createProduct = async function (req, res) {
   }
 };
 
+// update a product
 exports.updateProduct = async function (req, res) {
   try {
     const imgUrls = req.files.map((file) => file.filename);
@@ -68,6 +72,7 @@ exports.updateProduct = async function (req, res) {
   }
 };
 
+//delete a product
 exports.deleteProduct = async function (req, res) {
   try {
     await Product.findByIdAndDelete(req.params.id);

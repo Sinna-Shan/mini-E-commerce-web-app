@@ -3,7 +3,10 @@ const app = require('./app');
 dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 
+// getting database url from .env file
 const URL = process.env.DB_URL.replace('<PASSWORD>', process.env.DB_PASSWORD);
+
+// create database connection
 mongoose
   .connect(URL, {
     useCreateIndex: true,
