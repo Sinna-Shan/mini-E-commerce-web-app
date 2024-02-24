@@ -53,9 +53,11 @@ exports.createProduct = async function (req, res) {
 // update a product
 exports.updateProduct = async function (req, res) {
   try {
-    const imgUrls = req.files.map((file) => file.filename);
-    const data = { ...req.body, images: imgUrls };
-    const products = await Product.findByIdAndUpdate(req.params.id,data, {
+    const data = req.files
+      ? { ...req.body, images: req.files.map((file) => file.filename) }
+      : req.body;
+
+    const products = await Product.findByIdAndUpdate(req.params.id, data, {
       new: true,
       runValidators: true,
     });
